@@ -1,0 +1,17 @@
+{
+  "name": "WaveEffect",
+  "displayName": "WaveEffect",
+  "expo": {
+    "name": "WaveEffect",
+    "slug": "WaveEffect",
+    "version": "1.0.0",
+    "platforms": [
+      "ios",
+      "android",
+      "web"
+    ],
+    "assetBundlePatterns": [
+      "**/*"
+    ]
+  }
+}
