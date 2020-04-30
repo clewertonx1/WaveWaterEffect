@@ -1,5 +1,7 @@
 "# WaveWaterEffect" 
 
+### Expo preview: https://expo.io/@clewertonx1/WaveEffect
+
 A circle water animated with only Animated of react native
 
 ### Final result: 
