@@ -4,33 +4,61 @@ import { Platform, StyleSheet, Text, View, Animated} from 'react-native';
 
 export default function App() {
 
-  const animatedValue = new Animated.Value(0)
-  const animatedValueRef = useRef(animatedValue)
-
-  const translateX = animatedValueRef.current.interpolate({
-    inputRange: [ 0, 50],
-    outputRange: [0, -50],
+  const backWaveValue = new Animated.Value(0)
+  const backWaveRef = useRef(backWaveValue)
+  const backWavePos = backWaveRef.current.interpolate({
+    inputRange: [ 0, 1, 2 ],
+    outputRange: [3, 0, -3],
+    
   })
+
   Animated.loop(
     Animated.sequence([
-      Animated.timing(animatedValue, {
-        toValue: 50,
+      Animated.timing(backWaveValue, {
+        toValue: 2,
         duration: 1000,  
       }),
       Animated.delay(100),
-      Animated.timing(animatedValue, {
+      Animated.timing(backWaveValue, {
         toValue: 0,
         duration: 1000,  
       }),
   
     ])
   ).start()
+
+  const frontWaveValue = new Animated.Value(0)
+  const frontWaveRef = useRef(frontWaveValue)
+  const frontWavePos = frontWaveRef.current.interpolate({
+    inputRange: [ 0, 1, 2 ],
+    outputRange: [-5, 0, 5],
+  
+  })
+
+  Animated.loop(
+    Animated.sequence([
+      Animated.timing(frontWaveValue, {
+        toValue: 2,
+        duration: 1000,  
+      }),
+      Animated.delay(100),
+      Animated.timing(frontWaveValue, {
+        toValue: 0,
+        duration: 1000,  
+      }),
+  
+    ])
+  ).start()
+
+
+  
   
   
   return (
     <View style={styles.container}>
       
       <Animated.View style={{
+        backgroundColor: 'red',
          position: 'absolute',
          width: 400,
          height: 400,
@@ -38,9 +66,10 @@ export default function App() {
          backgroundColor: '#F5FCFF',
          zIndex: 2,
          bottom: 356,
-         left: translateX,
+         left: backWavePos,
       }}></Animated.View>
        <Animated.View style={{
+        backgroundColor: 'red',
         opacity: 0.5,
         position: 'absolute',
         width: 400,
@@ -49,7 +78,7 @@ export default function App() {
         backgroundColor: '#F5FCFF',
         zIndex: 3,
         bottom: 340,
-        left: translateX,
+        left: frontWavePos,
      }}></Animated.View>
       
       <View style={styles.borderCircle}>
